@@ -176,4 +176,19 @@ namespace RESTClient.MediaFire
         int Count { get; set; }
         List<int> Words { get; set; }
     }
+
+    public interface IPollUpload
+    {
+        int ResultCode { get; }
+        string Result { get; }
+
+        int StatusCode { get; }
+        string Status { get; }
+
+        int FileErrorCode { get; }
+        string FileError { get; }
+
+        string FileID { get; }
+        int Size { get; set; }
+    }
 }

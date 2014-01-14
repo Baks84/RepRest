@@ -274,4 +274,147 @@ namespace RESTClient.MediaFire.Implements
             set;
         }
     }
+
+    internal class UploadPoll : IPollUpload
+    {
+        public int result { get; set; }
+        public int ResultCode
+        {
+            get { return result; }
+        }
+
+        public string description { get; set; }
+        public string Result
+        {
+            get
+            {
+                string res = "";
+                switch (result)
+                {
+                    case 0:
+                        res = "Success";
+                        break;
+                    case -20:
+                        res = "Invalid Upload Key";
+                        break;
+                    case -80:
+                        res = "Upload Key not found";
+                        break;
+                    default:
+                        break;
+                }
+                return res;
+            }
+        }
+
+        public int status { get; set; }
+        public int StatusCode
+        {
+            get { return status; }
+        }
+
+        public string Status
+        {
+            get { return description; }
+        }
+
+        public int? fileerror { get; set; }
+        public int FileErrorCode
+        {
+            get { return fileerror.HasValue ? fileerror.Value : -1; }
+        }
+
+        public string FileError
+        {
+            get 
+            {
+                string res = "";
+                switch (fileerror)
+                {
+                    #region Switch
+                    case 1:
+                        res = "File is larger than the maximum filesize allowed";
+                        break;
+
+                    case 2:
+                        res = "File size cannot be 0";
+                        break;
+
+                    case 3:
+                    case 4:
+                    case 9:
+                        res = "Found a bad RAR file";
+                        break;
+
+                    case 5:
+                        res = "Virus found";
+                        break;
+
+                    case 6:
+                    case 8:
+                    case 10:
+                        res = "Unknown internal error";
+                        break;
+
+                    case 7:
+                        res = "File hash or size mismatch";
+                        break;
+
+                    case 12:
+                        res = "Failed to insert data into databse";
+                        break;
+
+                    case 13:
+                        res = "File name already exists in the same parent folder, skipping";
+                        break;
+
+                    case 14:
+                        res = "Destination folder does not exist";
+                        break;
+
+                    case 15:
+                        res = "Account storage limit is reached";
+                        break;
+
+                    case 16:
+                        res = "There was a file update revision conflict";
+                        break;
+
+                    case 17:
+                        res = "Error patching delta file";
+                        break;
+
+                    case 18:
+                        res = "Account is blocked";
+                        break;
+
+                    case 19:
+                        res = "Failure to create path";
+                        break;
+
+                    default:
+                        break; 
+                    #endregion
+                }
+                return res;
+            }
+        }
+
+        public string quickkey { get; set; }
+        public string FileID
+        {
+            get { return quickkey; }
+        }
+
+        public int Size
+        {
+            get;
+            set;
+        }
+    }
+
+    internal class UploadPollResponse : BaseResponse
+    {
+        public UploadPoll doupload { get; set; }
+    }
 }

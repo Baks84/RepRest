@@ -1139,9 +1139,32 @@ namespace RESTClient.MediaFire
         {
             Task<IUpload> t = Task<IUpload>.Factory.StartNew(() =>
             {
-                UploadFile(FileName, Upl_FolderID, FileID, ActionOnDuplicate, Path, Previous_Hash);
+                return UploadFile(FileName, Upl_FolderID, FileID, ActionOnDuplicate, Path, Previous_Hash);
             });
             return t;
+        }
+
+        public IPollUpload Upload_Poll(string UploadKey)
+        {
+            //Get API base URL
+            this.BaseUrl = MediaFireConfiguration.APIBaseURL;
+
+            //Create an Authorization request and Execute it.
+            var result = base.Execute(MediaFireApiHelper.Generate_PollUpload_Request(this.Token.Access_Token, UploadKey));
+            var res2 = Newtonsoft.Json.JsonConvert.DeserializeObject<UploadPollResponse>(BaseResponse.ClearResponse(result.Content));
+
+            //Check if received Token is valid
+            if (res2 == null || res2.action == null || res2.result == null || res2.action != "upload/poll_upload" || res2.result != "Success")
+            {
+                if (res2.result == "Error")
+                {
+                    throw new Exception(res2.message);
+                }
+                //Not valid
+                return null;
+            }
+
+            return res2.doupload;
         }
         #endregion
         

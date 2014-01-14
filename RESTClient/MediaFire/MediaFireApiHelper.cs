@@ -613,6 +613,19 @@ namespace RESTClient.MediaFire
             return req;
         }
 
+        static public RestSharp.RestRequest Generate_PollUpload_Request(string SessionToken, string UploadKey)
+        {
+            RestRequest rr = new RestRequest(MediaFireConfiguration.UploadPoll, Method.POST);
+            rr.RequestFormat = DataFormat.Json;
+            rr.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            rr.AddParameter("session_token", SessionToken);
+            rr.AddParameter("key", UploadKey);
+            
+            rr.AddParameter("response_format", "json");
+
+            return rr;
+        }
+
         static public string GetResponseContent(System.Net.WebResponse res)
         {
             string result = "";
