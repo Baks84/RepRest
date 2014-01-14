@@ -1,0 +1,115 @@
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\RESTClient.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\RESTClient.pdb
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\RESTClient.dll.CodeAnalysisLog.xml
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\RESTClient.dll.lastcodeanalysissucceeded
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\obj\Debug\RESTClient.csprojResolveAssemblyReference.cache
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\obj\Debug\RESTClient.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\obj\Debug\RESTClient.pdb
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\RestSharp.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\RestSharp.xml
+d:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\RESTClient.dll
+d:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\RESTClient.pdb
+d:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\RESTClient.dll.CodeAnalysisLog.xml
+d:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\RESTClient.dll.lastcodeanalysissucceeded
+d:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\obj\Debug\RESTClient.csprojResolveAssemblyReference.cache
+d:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\obj\Debug\RESTClient.dll
+d:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\obj\Debug\RESTClient.pdb
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Newtonsoft.Json.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Newtonsoft.Json.xml
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Newtonsoft.Json.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Newtonsoft.Json.xml
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\SkyNet.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\SkyNet.pdb
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\SugarSyncApi.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\SugarSyncApi.pdb
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\RESTClient.dll.config
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.Auth.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.Auth.PlatformServices.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.Drive.v2.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.PlatformServices.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\log4net.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\MegaApi.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Microsoft.Threading.Tasks.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Microsoft.Threading.Tasks.Extensions.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Net.Http.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Net.Http.Extensions.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Net.Http.Primitives.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Net.Http.WebRequest.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Runtime.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Threading.Tasks.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Zlib.Portable.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\MegaApi.pdb
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.pdb
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.xml
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.Auth.pdb
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.Auth.xml
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.Auth.PlatformServices.pdb
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.Auth.PlatformServices.xml
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.Drive.v2.pdb
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.Drive.v2.xml
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.PlatformServices.pdb
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.PlatformServices.xml
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\log4net.xml
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Microsoft.Threading.Tasks.xml
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Microsoft.Threading.Tasks.Extensions.xml
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.xml
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Net.Http.xml
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Net.Http.Extensions.xml
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Net.Http.Primitives.xml
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Net.Http.WebRequest.xml
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Runtime.xml
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Threading.Tasks.xml
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Zlib.Portable.pdb
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\obj\Debug\RESTClient.csproj.App.config
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\RESTClient.dll.config
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.Auth.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.Auth.PlatformServices.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.Drive.v2.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.PlatformServices.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\log4net.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\MegaApi.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Microsoft.Threading.Tasks.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Microsoft.Threading.Tasks.Extensions.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\SugarSyncApi.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Net.Http.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Net.Http.Extensions.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Net.Http.Primitives.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Net.Http.WebRequest.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Runtime.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Threading.Tasks.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Zlib.Portable.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\MegaApi.pdb
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\SugarSyncApi.pdb
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.pdb
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.xml
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.Auth.pdb
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.Auth.xml
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.Auth.PlatformServices.pdb
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.Auth.PlatformServices.xml
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.Drive.v2.pdb
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.Drive.v2.xml
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.PlatformServices.pdb
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Google.Apis.PlatformServices.xml
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\log4net.xml
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Microsoft.Threading.Tasks.xml
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Microsoft.Threading.Tasks.Extensions.xml
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.xml
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Net.Http.xml
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Net.Http.Extensions.xml
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Net.Http.Primitives.xml
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Net.Http.WebRequest.xml
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Runtime.xml
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\System.Threading.Tasks.xml
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\Zlib.Portable.pdb
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\obj\Debug\RESTClient.csproj.App.config
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\BoxApi.V2.dll
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\BoxApi.V2.pdb
+D:\Synched Programming\1 - Desktop\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\BoxApi.V2.xml
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\BoxApi.V2.dll
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\BoxApi.V2.pdb
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\BoxApi.V2.xml
+D:\Mein\Programming\Desktop\ownCloudManager\RESTClient\RESTClient\bin\Debug\RestSharp.xml

@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FC868A3E-DDC5-43D2-85AA-A27FEC79B251}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BoxApi.V2</RootNamespace>
+    <AssemblyName>BoxApi.V2</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\BoxApi.V2.xml</DocumentationFile>
+    <LangVersion>default</LangVersion>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\BoxApi.V2.xml</DocumentationFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authentication\Common\IRequestAuthenticator.cs" />
+    <Compile Include="Authentication\Common\RequestAuthenticatorBase.cs" />
+    <Compile Include="Authentication\Legacy\BoxAuthenticator.cs" />
+    <Compile Include="Authentication\Legacy\BoxAuthToken.cs" />
+    <Compile Include="Authentication\Legacy\BoxTicket.cs" />
+    <Compile Include="Authentication\Legacy\BoxToken.cs" />
+    <Compile Include="Authentication\Legacy\LegacyRequestAuthenticator.cs" />
+    <Compile Include="Authentication\Legacy\RequestHelper.cs" />
+    <Compile Include="Authentication\OAuth2\OAuth2RequestAuthenticator.cs" />
+    <Compile Include="Authentication\OAuth2\RequestHelper.cs" />
+    <Compile Include="Authentication\OAuth2\OAuthToken.cs" />
+    <Compile Include="Authentication\OAuth2\TokenProvider.cs" />
+    <Compile Include="BoxManager.Collaboration.cs" />
+    <Compile Include="BoxManager.Comment.cs" />
+    <Compile Include="BoxManager.Discussion.cs" />
+    <Compile Include="BoxManager.Event.cs" />
+    <Compile Include="BoxManager.File.cs" />
+    <Compile Include="BoxManager.Search.cs" />
+    <Compile Include="BoxManager.SharedItems.cs" />
+    <Compile Include="BoxManager.Token.cs" />
+    <Compile Include="BoxManager.User.cs" />
+    <Compile Include="BoxRestClient.cs" />
+    <Compile Include="ICollaboration.cs" />
+    <Compile Include="IComment.cs" />
+    <Compile Include="IDiscussion.cs" />
+    <Compile Include="IEnterpriseManager.cs" />
+    <Compile Include="IFile.cs" />
+    <Compile Include="IFolder.cs" />
+    <Compile Include="ISharedFile.cs" />
+    <Compile Include="ISharedFolder.cs" />
+    <Compile Include="ISharedItems.cs" />
+    <Compile Include="IStandaloneUser.cs" />
+    <Compile Include="IUserManager.cs" />
+    <Compile Include="Model\Collaboration.cs" />
+    <Compile Include="Model\CollaborationCollection.cs" />
+    <Compile Include="Model\Collection.cs" />
+    <Compile Include="Model\CommentCollection.cs" />
+    <Compile Include="Model\Discussion.cs" />
+    <Compile Include="Model\DiscussionCollection.cs" />
+    <Compile Include="Model\EmailAlias.cs" />
+    <Compile Include="Model\EnterpriseUser.cs" />
+    <Compile Include="Model\Enum\Access.cs" />
+    <Compile Include="Model\Enum\BoxManagerOptions.cs" />
+    <Compile Include="Model\Enum\CollaborationRole.cs" />
+    <Compile Include="Model\Enum\EnterpriseEventType.cs" />
+    <Compile Include="Model\Enum\EnumExtensions.cs" />
+    <Compile Include="Model\Enum\ResourceType.cs" />
+    <Compile Include="Model\Enum\StandardEventType.cs" />
+    <Compile Include="Model\Enum\Status.cs" />
+    <Compile Include="Model\Enum\StreamType.cs" />
+    <Compile Include="Model\Enum\SyncState.cs" />
+    <Compile Include="Model\Enum\ThumbnailSize.cs" />
+    <Compile Include="Model\Enum\UserRole.cs" />
+    <Compile Include="Model\Enum\UserStatus.cs" />
+    <Compile Include="Model\ErrorCollection.cs" />
+    <Compile Include="Model\EventCollection.cs" />
+    <Compile Include="Model\Event.cs" />
+    <Compile Include="Model\Fields\CollaborationField.cs" />
+    <Compile Include="Model\Fields\CommentField.cs" />
+    <Compile Include="Model\Fields\DiscussionField.cs" />
+    <Compile Include="Model\Fields\EnterpriseUserField.cs" />
+    <Compile Include="Model\Fields\Field.cs" />
+    <Compile Include="Model\Fields\FileField.cs" />
+    <Compile Include="Model\Fields\FolderField.cs" />
+    <Compile Include="Model\Fields\IContentField.cs" />
+    <Compile Include="Model\Fields\UserField.cs" />
+    <Compile Include="Model\FolderUploadEmail.cs" />
+    <Compile Include="Model\HierarchyEntity.cs" />
+    <Compile Include="Model\MiniFolderEntity.cs" />
+    <Compile Include="Model\PathCollection.cs" />
+    <Compile Include="Model\SearchResultCollection.cs" />
+    <Compile Include="Model\TrackingCode.cs" />
+    <Compile Include="Model\EnterpriseUserCollection.cs" />
+    <Compile Include="BoxException.cs" />
+    <Compile Include="BoxManager.cs" />
+    <Compile Include="Model\Comment.cs" />
+    <Compile Include="Model\Error.cs" />
+    <Compile Include="Model\File.cs" />
+    <Compile Include="Model\Folder.cs" />
+    <Compile Include="Model\Entity.cs" />
+    <Compile Include="Model\ItemCollection.cs" />
+    <Compile Include="Model\ModifiableEntity.cs" />
+    <Compile Include="Model\Permissions.cs" />
+    <Compile Include="Model\SharedLink.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserEntity.cs" />
+    <Compile Include="Model\Version.cs" />
+    <Compile Include="RequestHelper.cs" />
+    <Compile Include="Serialization\AttributableJsonSerializer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BoxManager.Folder.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

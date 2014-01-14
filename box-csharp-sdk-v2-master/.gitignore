@@ -1,0 +1,9 @@
+obj
+bin
+_ReSharper.*
+packages
+*.suo
+*.user
+*.log
+test_info.json
+*.nupkg
