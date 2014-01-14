@@ -83,6 +83,13 @@ namespace RESTClient.MediaFire.Implements
                 return "";
             }
         }
+
+
+        public string Hash
+        {
+            get;
+            set;
+        }
     }
 
     internal class doupload

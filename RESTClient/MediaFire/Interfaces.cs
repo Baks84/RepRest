@@ -135,6 +135,7 @@ namespace RESTClient.MediaFire
         string Upload_Key { get; }
         int Upload_Result { get; }
         string Upload_Result_Message { get; }
+        string Hash { get; set; }
     }
 
     public interface IWebUpload : IUpload

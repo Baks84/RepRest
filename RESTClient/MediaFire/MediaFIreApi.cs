@@ -1086,81 +1086,65 @@ namespace RESTClient.MediaFire
             return res2;
         }
 
+        /// <summary>
+        /// Upload a file through POST to the user's account. This api returns the upload key and hash when successful. 
+        /// You will have to pass this key to upload/poll_upload to get the FileID.
+        /// </summary>
+        /// <param name="FileName">Path, name and extension of the file to be uploaded.</param>
+        /// <param name="Upl_FolderID">The folderkey of the folder where to store the file. If it's not passed, then the file will be stored in the root folder.</param>
+        /// <param name="FileID">If a FileID is passed, the uploaded file content will overwrite an existing file's current revision defined by the passed FileID.</param>
+        /// <param name="ActionOnDuplicate">This parameter can take 'skip', 'keep', or 'replace' as values. This will be honored only if a file with the same name in the same folder already exists. This will determine whether the file should be skipped, kept (with an appended number), or replaced.</param>
+        /// <param name="Path">The path relative to 'upload_folderid' where the file should be uploaded. Any folders specified will be created if they do not exist.</param>
+        /// <param name="Previous_Hash">This is the hash of the last known hash to the client of the file before it's modified. This is honored only on update uploads, that is, when passing 'quickkey' to override an existing file on the cloud. If the previous hash is different than the current version on the cloud, then this is a conflict and the file will be uploaded as a new file with new quickkey and filename.</param>
+        /// <returns>IUpload object with UploadKey and Hash if succesfull and Upload Result Code and Message if not.</returns>
         public IUpload UploadFile(string FileName, string Upl_FolderID = "", string FileID = "",
                 UploadDuplicateActions ActionOnDuplicate = UploadDuplicateActions.None, string Path = "", string Previous_Hash = "")
         {
-            System.IO.FileInfo fileInfo = new System.IO.FileInfo(FileName);
-            //Get API base URL
-            this.BaseUrl = MediaFireConfiguration.BaseURL;
-            if (BaseUrl.Last() != '/') BaseUrl += "/";
-            StringBuilder uploadAddress = new StringBuilder(BaseUrl).Append(MediaFireConfiguration.Upload).Append("&session_token=").Append(this.Token.Access_Token);
-            if (!string.IsNullOrEmpty(Upl_FolderID))
-            {
-                uploadAddress.Append("&upload_key=").Append(Upl_FolderID);
-            }
-            else 
-            {
-                uploadAddress.Append("&upload_key=").Append("myfiles");
-            }
-            uploadAddress.Append("&filenum=0&uploader=0&response_format=json");
-
-            var req = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(uploadAddress.ToString());
-            req.Accept = "*/*";
-            req.ContentType = "application/octet-stream";
-            req.Method = "POST";
-            req.SendChunked = false;
-            req.Referer = "https://www.mediafire.com/apps/myfiles/?shared=0&multikeys=0";
-            req.UserAgent = "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.72 Safari/537.36";
-            req.Headers.Add("Origin", "https://www.mediafire.com");
-            req.Headers.Add("Accept-Encoding", "gzip,deflate,sdch");
-            req.Headers.Add("Accept-Language", "en-US,en;q=0.8,de;q=0.6,pl;q=0.4");
-            req.Headers.Add("X-Filename", fileInfo.Name);
-            req.Headers.Add("X-Filesize", fileInfo.Length.ToString());
-            req.ContentLength = fileInfo.Length;
-            req.Headers.Add("X-Filetype", "text/plain");
-
-            using (System.IO.FileStream fs = fileInfo.OpenRead())
-            {
-                fs.Position = 0;
-
-                System.Security.Cryptography.SHA256 mySHA = System.Security.Cryptography.SHA256Managed.Create();
-                byte[] hashValue = mySHA.ComputeHash(fs);
-                req.Headers.Add("X-Filehash", BitConverter.ToString(hashValue).Replace("-", ""));
-            }
-
-            using (var rs = req.GetRequestStream())
-            {
-                rs.Write(System.IO.File.ReadAllBytes(FileName), 0, System.IO.File.ReadAllBytes(FileName).Length);
-            }
+            var req = MediaFireApiHelper.Generate_Upload_Request(this.Token.Access_Token, MediaFireConfiguration.BaseURL, FileName,
+                    Upl_FolderID, FileID, ActionOnDuplicate, Path, Previous_Hash);
 
             var res = req.GetResponse();
-            string result = "";
-            using (var rs = res.GetResponseStream())
+
+            var res2 = Newtonsoft.Json.JsonConvert.DeserializeObject<Upload>(BaseResponse.ClearResponse(MediaFireApiHelper.GetResponseContent(res)));
+
+            //Check if received Token is valid
+            if (res2 == null || res2.action == null || res2.result == null || res2.action != "upload/upload.php" || res2.result != "Success")
             {
-                byte[] buff = new byte[res.ContentLength];
-                rs.Read(buff, 0, (int)res.ContentLength);
-                result = Encoding.UTF8.GetString(buff);
+                if (res2.result == "Error")
+                {
+                    throw new Exception(res2.message);
+                }
+                //Not valid
+                return null;
             }
-            //Create an Authorization request and Execute it.
-            //var result = base.Execute(MediaFireApiHelper.Generate_Upload_Request(this.Token.Access_Token, FileName, Upl_FolderID, FileID, ActionOnDuplicate, Path, Previous_Hash));
-            //var res2 = Newtonsoft.Json.JsonConvert.DeserializeObject<Upload>(BaseResponse.ClearResponse(result.Content));
 
-            ////Check if received Token is valid
-            //if (res2 == null || res2.action == null || res2.result == null || res2.action != "upload/upload" || res2.result != "Success")
-            //{
-            //    if (res2.result == "Error")
-            //    {
-            //        throw new Exception(res2.message);
-            //    }
-            //    //Not valid
-            //    return null;
-            //}
+            res2.Hash = req.Headers["X-Filehash"];
 
-            //return res2;
-            return null;
+            return res2;
+        }
+
+        /// <summary>
+        /// Upload a file through POST to the user's account. This api returns the upload key and hash when successful. 
+        /// You will have to pass this key to upload/poll_upload to get the FileID.
+        /// </summary>
+        /// <param name="FileName">Path, name and extension of the file to be uploaded.</param>
+        /// <param name="Upl_FolderID">The folderkey of the folder where to store the file. If it's not passed, then the file will be stored in the root folder.</param>
+        /// <param name="FileID">If a FileID is passed, the uploaded file content will overwrite an existing file's current revision defined by the passed FileID.</param>
+        /// <param name="ActionOnDuplicate">This parameter can take 'skip', 'keep', or 'replace' as values. This will be honored only if a file with the same name in the same folder already exists. This will determine whether the file should be skipped, kept (with an appended number), or replaced.</param>
+        /// <param name="Path">The path relative to 'upload_folderid' where the file should be uploaded. Any folders specified will be created if they do not exist.</param>
+        /// <param name="Previous_Hash">This is the hash of the last known hash to the client of the file before it's modified. This is honored only on update uploads, that is, when passing 'quickkey' to override an existing file on the cloud. If the previous hash is different than the current version on the cloud, then this is a conflict and the file will be uploaded as a new file with new quickkey and filename.</param>
+        /// <returns>IUpload object with UploadKey and Hash if succesfull and Upload Result Code and Message if not.</returns>
+        public Task<IUpload> UploadFileAsync(string FileName, string Upl_FolderID = "", string FileID = "",
+                UploadDuplicateActions ActionOnDuplicate = UploadDuplicateActions.None, string Path = "", string Previous_Hash = "")
+        {
+            Task<IUpload> t = Task<IUpload>.Factory.StartNew(() =>
+            {
+                UploadFile(FileName, Upl_FolderID, FileID, ActionOnDuplicate, Path, Previous_Hash);
+            });
+            return t;
         }
         #endregion
-
+        
         #endregion
     }
 }

@@ -535,74 +535,94 @@ namespace RESTClient.MediaFire
             return rr;
         }
 
-        static public RestSharp.RestRequest Generate_Upload_Request(string SessionToken, string FileName, string Upl_FolderID = "", string FileID = "",
+        static public System.Net.HttpWebRequest Generate_Upload_Request(string SessionToken, string BaseUrl, string FileName, string Upl_FolderID = "", string FileID = "",
                 UploadDuplicateActions ActionOnDuplicate = UploadDuplicateActions.None, string Path = "", string Previous_Hash = "")
         {
             System.IO.FileInfo fileInfo = new System.IO.FileInfo(FileName);
-
-            StringBuilder uploadAddress = new StringBuilder(MediaFireConfiguration.Upload).Append("&session_token=").Append(SessionToken);
+            //Get API base URL
+            
+            if (BaseUrl.Last() != '/') BaseUrl += "/";
+            StringBuilder uploadAddress = new StringBuilder(BaseUrl).Append(MediaFireConfiguration.Upload).Append("&session_token=").Append(SessionToken);
             if (!string.IsNullOrEmpty(Upl_FolderID))
             {
                 uploadAddress.Append("&upload_key=").Append(Upl_FolderID);
             }
-
-            RestRequest rr = new RestRequest(uploadAddress.ToString(), Method.POST);//;MediaFireConfiguration.Upload, Method.POST);
-            rr.RequestFormat = DataFormat.Json;
-            rr.AddHeader("Content-Type", "application/octet-stream");
-            //rr.AddParameter("session_token", SessionToken);
-
-            if (!System.IO.File.Exists(FileName))
+            else
             {
-                throw new System.IO.FileNotFoundException("The file " + FileName + " was not found");
+                uploadAddress.Append("&upload_key=").Append("myfiles");
+            }
+            uploadAddress.Append("&filenum=0&uploader=0&response_format=json");
+
+            if (!string.IsNullOrEmpty(FileID))
+            {
+                uploadAddress.Append("&quick_key=").Append(FileID);
             }
 
-            rr.AddHeader("X-Filename", fileInfo.Name);
-            rr.AddHeader("X-Filesize", fileInfo.Length.ToString());
-            rr.AddHeader("X-Filetype", "text/plain");
+            switch (ActionOnDuplicate)
+            {
+                case UploadDuplicateActions.Keep:
+                    uploadAddress.Append("&action_on_duplicate=").Append("keep");
+                    break;
+                case UploadDuplicateActions.Skip:
+                    uploadAddress.Append("&action_on_duplicate=").Append("skip");
+                    break;
+                case UploadDuplicateActions.Replace:
+                    uploadAddress.Append("&action_on_duplicate=").Append("replace");
+                    break;
+            }
+
+            if (!string.IsNullOrEmpty(Path))
+            {
+                uploadAddress.Append("&path=").Append(Path);
+            }
+
+            if (!string.IsNullOrEmpty(Previous_Hash))
+            {
+                uploadAddress.Append("&previous_hash=").Append(Previous_Hash);
+            }
+
+            var req = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(uploadAddress.ToString());
+            req.Accept = "*/*";
+            req.ContentType = "application/octet-stream";
+            req.Method = "POST";
+            req.SendChunked = false;
+            req.Referer = "https://www.mediafire.com/apps/myfiles/?shared=0&multikeys=0";
+            req.UserAgent = "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.72 Safari/537.36";
+            req.Headers.Add("Origin", "https://www.mediafire.com");
+            req.Headers.Add("Accept-Encoding", "gzip,deflate,sdch");
+            req.Headers.Add("Accept-Language", "en-US,en;q=0.8,de;q=0.6,pl;q=0.4");
+            req.Headers.Add("X-Filename", fileInfo.Name);
+            req.Headers.Add("X-Filesize", fileInfo.Length.ToString());
+            req.ContentLength = fileInfo.Length;
+            req.Headers.Add("X-Filetype", "text/plain");
 
             using (System.IO.FileStream fs = fileInfo.OpenRead())
             {
                 fs.Position = 0;
 
-                SHA256 mySHA = SHA256Managed.Create();
+                System.Security.Cryptography.SHA256 mySHA = System.Security.Cryptography.SHA256Managed.Create();
                 byte[] hashValue = mySHA.ComputeHash(fs);
-                rr.AddHeader("X-Filehash", BitConverter.ToString(hashValue).Replace("-", ""));
+                req.Headers.Add("X-Filehash", BitConverter.ToString(hashValue).Replace("-", ""));
             }
 
-            rr.AddParameter("file", System.IO.File.ReadAllBytes(FileName), ParameterType.RequestBody);
+            using (var rs = req.GetRequestStream())
+            {
+                rs.Write(System.IO.File.ReadAllBytes(FileName), 0, System.IO.File.ReadAllBytes(FileName).Length);
+            }
 
-            //if (!string.IsNullOrEmpty(FileID))
-            //{
-            //    rr.AddParameter("quick_key", FileID);
-                
-            //    if (!string.IsNullOrEmpty(Previous_Hash))
-            //    {
-            //        rr.AddParameter("previous_hash", Previous_Hash);
-            //    }
-            //}
+            return req;
+        }
 
-            //if (!string.IsNullOrEmpty(Path))
-            //{
-            //    rr.AddParameter("path", Path);
-            //}
-
-            //switch (ActionOnDuplicate)
-            //{
-            //    case UploadDuplicateActions.Keep:
-            //        rr.AddParameter("action_on_duplicate", "keep");
-            //        break;
-            //    case UploadDuplicateActions.Skip:
-            //        rr.AddParameter("action_on_duplicate", "skip");
-            //        break;
-            //    case UploadDuplicateActions.Replace:
-            //        rr.AddParameter("action_on_duplicate", "replace");
-            //        break;
-            //}
-
-            //rr.AddParameter("response_format", "json");
-            
-
-            return rr;
+        static public string GetResponseContent(System.Net.WebResponse res)
+        {
+            string result = "";
+            using (var rs = res.GetResponseStream())
+            {
+                byte[] buff = new byte[res.ContentLength];
+                rs.Read(buff, 0, (int)res.ContentLength);
+                result = Encoding.UTF8.GetString(buff);
+            }
+            return result;
         }
         #endregion
     }

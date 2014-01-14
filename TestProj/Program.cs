@@ -18,7 +18,7 @@ namespace TestProj
             RESTClient.MediaFire.MediaFireApi mfapi = new RESTClient.MediaFire.MediaFireApi();
             mfapi.GetSessionToken("kkromkowski@ftechno.pl", "Aniolek69");
 
-            var info = mfapi.UploadFile("D:\\MFWrzutka8.txt");
+            var info = mfapi.UploadFile("D:\\Wrzutka9.txt", ActionOnDuplicate:RESTClient.MediaFire.UploadDuplicateActions.Replace);
 
             //var info = mfapi.PreUpload("D:\\DropBox\\faktura.pdf", MakeHash: true, Resumable:true);
             
