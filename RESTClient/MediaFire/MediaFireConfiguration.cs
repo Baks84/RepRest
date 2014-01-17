@@ -48,5 +48,7 @@ namespace RESTClient.MediaFire
         static public String PreUpload { get { return "upload/pre_upload.php"; } }
         static public String Upload { get { return "douploadtoapi/?type=basic"; } }
         static public String UploadPoll { get { return "upload/poll_upload.php"; } }
+
+        static public String Trash { get { return "device/get_trash.php"; } }
     }
 }

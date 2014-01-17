@@ -432,4 +432,50 @@ namespace RESTClient.MediaFire.Implements
     {
         public List<string> quickkeys { get; set; }
     }
+
+    internal class TrashResponse : BaseResponse, ITrash
+    {
+        public List<FileInfo> files
+        {
+            get;
+            set;
+        }
+
+        public List<IFileInfo> Files
+        {
+            get
+            {
+                List<IFileInfo> result = new List<IFileInfo>();
+                if (files != null)
+                {
+                    foreach (var item in files)
+                    {
+                        result.Add(item);
+                    }
+                }
+                return result;
+            }
+        }
+
+        public List<FolderInfo> folders
+        {
+            get;
+            set;
+        }
+        public List<IFolderInfo> Folders
+        {
+            get
+            {
+                List<IFolderInfo> result = new List<IFolderInfo>();
+                if (folders != null)
+                {
+                    foreach (var item in folders)
+                    {
+                        result.Add(item);
+                    }
+                }
+                return result;
+            }
+        }
+    }
 }

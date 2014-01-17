@@ -240,7 +240,7 @@ namespace RESTClient.MediaFire.Implements
             get { return all_units_ready == "yes" ? true : false; }
         }
 
-        public int Number_of_unit
+        public int Number_of_units
         {
             get;
             set;

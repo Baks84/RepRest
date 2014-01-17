@@ -1144,6 +1144,11 @@ namespace RESTClient.MediaFire
             return t;
         }
 
+        /// <summary>
+        /// Checks the status of the upload
+        /// </summary>
+        /// <param name="UploadKey">The key returned from UploadFile function</param>
+        /// <returns>IPollUpload object</returns>
         public IPollUpload Upload_Poll(string UploadKey)
         {
             //Get API base URL
@@ -1166,6 +1171,153 @@ namespace RESTClient.MediaFire
 
             return res2.doupload;
         }
+
+        /// <summary>
+        /// DO NOT WORK - API RETURNS ALWAYS PROBLEM WITH HASH WHERE IT IS OK. USE UPLOADFILE()
+        /// </summary>
+        /// <param name="FileName"></param>
+        /// <param name="Upl_FolderID"></param>
+        /// <param name="ActionOnDuplicate"></param>
+        /// <param name="Path"></param>
+        /// <returns></returns>
+        public IUpload ResumableUppload(string FileName, string Upl_FolderID="", UploadDuplicateActions ActionOnDuplicate = UploadDuplicateActions.None, string Path="")
+        {
+            IPreUpload preUploadResult = PreUpload(FileName, MakeHash: true, Upl_FolderID: Upl_FolderID, ActionOnDuplicate: ActionOnDuplicate, Resumable: true, Path: Path);
+
+            if (!string.IsNullOrEmpty(preUploadResult.FileID))
+            {
+                return new Upload() 
+                {
+                    upload_key = preUploadResult.FileID,
+                    result = "Success",
+                    message = "UploadKey contains FileID"
+                };
+            }
+
+            if (preUploadResult.Resumable_upload == null)
+            {
+                return null; // error
+            }
+
+            if (preUploadResult.Resumable_upload.Number_of_units == 1)
+            {
+                //Normal Upload
+                return UploadFile(FileName, Upl_FolderID, ActionOnDuplicate: ActionOnDuplicate, Path: Path);
+            }
+
+            int Unit_Size = preUploadResult.Resumable_upload.Unit_size;
+            int Nb_Units = preUploadResult.Resumable_upload.Number_of_units;
+            var bitmap = MediaFireApiHelper.decodeBitmap(preUploadResult.Resumable_upload.UploadBitmap);
+
+            if (bitmap.Count != Nb_Units)
+            {
+                //Error
+            }
+
+            System.IO.FileInfo fi = new System.IO.FileInfo(FileName);
+            using (System.IO.FileStream file = fi.OpenRead())
+            {
+                byte[] buffer = new byte[Unit_Size];
+                for (int i = 0; i < Nb_Units - 1; i++)
+                {
+                    if (!bitmap[i])
+                    {
+                        file.Read(buffer, 0, Unit_Size);
+                        IUpload result = UploadFilePart(FileName, buffer, i, Upl_FolderID);
+                    }
+                }
+
+                if (!bitmap[bitmap.Count - 1])
+                {
+                    buffer = new byte[fi.Length - ((Nb_Units - 1) * Unit_Size)];
+                    file.Read(buffer, 0, buffer.Length);
+                    IUpload result = UploadFilePart(FileName, buffer, Nb_Units-1, Upl_FolderID);
+                }
+            }
+
+            return null;
+            
+        }
+
+        private IUpload UploadFilePart(string FileName, byte[] buffer, int Unit_ID, string Upl_FolderID = "")
+        {
+            var req = MediaFireApiHelper.Generate_PartUpload_Request(this.Token.Access_Token, MediaFireConfiguration.BaseURL, FileName, buffer, Unit_ID,
+                    Upl_FolderID);
+
+            var res = req.GetResponse();
+
+            var res2 = Newtonsoft.Json.JsonConvert.DeserializeObject<Upload>(BaseResponse.ClearResponse(MediaFireApiHelper.GetResponseContent(res)));
+
+            //Check if received Token is valid
+            if (res2 == null || res2.action == null || res2.result == null || res2.action != "upload/upload.php" || res2.result != "Success")
+            {
+                if (res2.result == "Error")
+                {
+                    throw new Exception(res2.message);
+                }
+                //Not valid
+                return null;
+            }
+
+            res2.Hash = req.Headers["X-Filehash"];
+
+            return res2;
+        }
+        #endregion
+
+        #region Device
+
+        /// <summary>
+        /// Returns the trash can folder data and the list of immediate files and folders in the trash can.
+        /// </summary>
+        /// <returns>ITrash object</returns>
+        public ITrash GetTrash()
+        {
+            //Get API base URL
+            this.BaseUrl = MediaFireConfiguration.APIBaseURL;
+
+            //Create an Authorization request and Execute it.
+            var result = base.Execute(MediaFireApiHelper.Generate_GetTrash_Request(this.Token.Access_Token));
+            var res2 = Newtonsoft.Json.JsonConvert.DeserializeObject<TrashResponse>(BaseResponse.ClearResponse(result.Content));
+
+            //Check if received Token is valid
+            if (res2 == null || res2.action == null || res2.result == null || res2.action != "device/get_trash" || res2.result != "Success")
+            {
+                if (res2.result == "Error")
+                {
+                    throw new Exception(res2.message);
+                }
+                //Not valid
+                return null;
+            }
+
+            return res2;
+        }
+
+        //TO DO Device getchanges
+        public void GetChanges(int Revision)
+        {
+            ////Get API base URL
+            //this.BaseUrl = MediaFireConfiguration.APIBaseURL;
+
+            ////Create an Authorization request and Execute it.
+            //var result = base.Execute(MediaFireApiHelper.Generate_GetFolderRevision_Request(Folder_Key, this.Token.Access_Token));
+            //var res2 = Newtonsoft.Json.JsonConvert.DeserializeObject<GetFolderRevisionResponse>(BaseResponse.ClearResponse(result.Content));
+
+            ////Check if received Token is valid
+            //if (res2 == null || res2.action == null || res2.result == null || res2.action != "folder/get_revision" || res2.result != "Success")
+            //{
+            //    if (res2.result == "Error")
+            //    {
+            //        throw new Exception(res2.message);
+            //    }
+            //    //Not valid
+            //    return null;
+            //}
+
+            //return res2.Changes;
+        }
+
         #endregion
         
         #endregion

@@ -18,8 +18,11 @@ namespace TestProj
             RESTClient.MediaFire.MediaFireApi mfapi = new RESTClient.MediaFire.MediaFireApi();
             mfapi.GetSessionToken("kkromkowski@ftechno.pl", "Aniolek69");
 
+            var info = mfapi.GetTrash();
+            //mfapi.ResumableUppload("D:\\Mein\\kolor-360-video-example.mp4");
+
             //var info = mfapi.UploadFile("D:\\Wrzutka9.txt", ActionOnDuplicate:RESTClient.MediaFire.UploadDuplicateActions.Replace);
-            var info2 = mfapi.Upload_Poll("0be5u8rabm1");//info.Upload_Key);
+            //var info2 = mfapi.Upload_Poll("0be5u8rabm1");//info.Upload_Key);
 
             //var info = mfapi.PreUpload("D:\\DropBox\\faktura.pdf", MakeHash: true, Resumable:true);
             

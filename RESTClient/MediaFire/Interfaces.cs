@@ -166,7 +166,7 @@ namespace RESTClient.MediaFire
     public interface IResumableUpload
     {
         bool AllUnitsUploaded { get; }
-        int Number_of_unit { get; set; }
+        int Number_of_units { get; set; }
         int Unit_size { get; set; }
         IUploadBitmap UploadBitmap { get;}
     }
@@ -191,4 +191,11 @@ namespace RESTClient.MediaFire
         string FileID { get; }
         int Size { get; set; }
     }
+
+    public interface ITrash
+    {
+        List<IFileInfo> Files { get;}
+        List<IFolderInfo> Folders { get;}
+    }
+
 }

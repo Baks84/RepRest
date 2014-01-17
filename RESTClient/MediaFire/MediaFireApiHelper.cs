@@ -613,6 +613,63 @@ namespace RESTClient.MediaFire
             return req;
         }
 
+        static public System.Net.HttpWebRequest Generate_PartUpload_Request(string SessionToken, string BaseUrl, string FileName, byte[] buffer, int Unit_ID, string Upl_FolderID = "")
+        {
+            System.IO.FileInfo fileInfo = new System.IO.FileInfo(FileName);
+            //Get API base URL
+
+            if (BaseUrl.Last() != '/') BaseUrl += "/";
+            StringBuilder uploadAddress = new StringBuilder(BaseUrl).Append(MediaFireConfiguration.Upload).Append("&session_token=").Append(SessionToken);
+            if (!string.IsNullOrEmpty(Upl_FolderID))
+            {
+                uploadAddress.Append("&upload_key=").Append(Upl_FolderID);
+            }
+            else
+            {
+                uploadAddress.Append("&upload_key=").Append("myfiles");
+            }
+            uploadAddress.Append("&filenum=0&uploader=0&response_format=json");
+
+            var req = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(uploadAddress.ToString());
+
+            req.Accept = "*/*";
+            req.ContentType = "application/octet-stream";
+            req.Method = "POST";
+            req.SendChunked = false;
+            req.Referer = "https://www.mediafire.com/apps/myfiles/?shared=0&multikeys=0";
+            req.UserAgent = "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.72 Safari/537.36";
+            req.Headers.Add("Origin", "https://www.mediafire.com");
+            req.Headers.Add("Accept-Encoding", "gzip,deflate,sdch");
+            req.Headers.Add("Accept-Language", "en-US,en;q=0.8,de;q=0.6,pl;q=0.4");
+            req.Headers.Add("X-Filename", fileInfo.Name);
+            req.Headers.Add("X-Filesize", fileInfo.Length.ToString());
+            req.ContentLength = buffer.Length;
+            req.Headers.Add("X-Filetype", "text/plain");
+
+            using (System.IO.FileStream fs = fileInfo.OpenRead())
+            {
+                fs.Position = 0;
+
+                System.Security.Cryptography.SHA256 mySHA = System.Security.Cryptography.SHA256Managed.Create();
+                byte[] hashValue = mySHA.ComputeHash(fs);
+                req.Headers.Add("X-Filehash", BitConverter.ToString(hashValue).Replace("-", ""));
+
+                req.Headers.Add("X-unit-id", Unit_ID.ToString());
+                req.Headers.Add("X-unit-size", buffer.Length.ToString());
+                hashValue = mySHA.ComputeHash(buffer);
+                req.Headers.Add("X-unit-hash", BitConverter.ToString(hashValue).Replace("-", ""));
+            }
+
+            System.Threading.Thread.Sleep(1000);
+
+            using (var rs = req.GetRequestStream())
+            {
+                rs.Write(buffer, 0, buffer.Length);
+            }
+
+            return req;
+        }
+
         static public RestSharp.RestRequest Generate_PollUpload_Request(string SessionToken, string UploadKey)
         {
             RestRequest rr = new RestRequest(MediaFireConfiguration.UploadPoll, Method.POST);
@@ -637,6 +694,42 @@ namespace RESTClient.MediaFire
             }
             return result;
         }
+
+        static public List<bool> decodeBitmap(IUploadBitmap bitmap)
+        {
+            var uploadUnits = new List<bool>();
+            for (int i = 0; i < 16 * bitmap.Count; i++)
+            {
+                uploadUnits.Add(false);
+            }
+
+            for (var i = 0; i < bitmap.Count; i++)
+            {
+                var word = bitmap.Words[i];
+                var bin = Convert.ToString(word, 2);
+                while (bin.Length < 16)
+                    bin = "0" + bin;
+                for (var b = 0; b < bin.Length; b++)
+                    uploadUnits[i * 16 + b] = (bin[15 - b] == '1');
+            }
+            return uploadUnits;
+        }
+        #endregion
+
+        #region Device
+
+        static public RestSharp.RestRequest Generate_GetTrash_Request(string SessionToken)
+        {
+            RestRequest rr = new RestRequest(MediaFireConfiguration.Trash, Method.POST);
+            rr.RequestFormat = DataFormat.Json;
+            rr.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            rr.AddParameter("session_token", SessionToken);
+
+            rr.AddParameter("response_format", "json");
+
+            return rr;
+        }
+
         #endregion
     }
 }
